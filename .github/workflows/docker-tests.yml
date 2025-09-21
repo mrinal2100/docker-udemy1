@@ -31,9 +31,7 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}
 
       - name: Zip source bundle
-        run: |
-          cp Dockerfile.dev Dockerfile  # ⬅️ Elastic Beanstalk requires this
-          zip -r deploy.zip * .[^.]* -x '*.git*'
+        run: zip -r deploy.zip * .[^.]* -x '*.git*'
 
       - name: Deploy to Elastic Beanstalk
         uses: einaregilsson/beanstalk-deploy@v21
