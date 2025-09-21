@@ -32,7 +32,8 @@ jobs:
 
       - name: Zip source bundle
         run: |
-          zip -r deploy.zip * .[^.]*
+          cp Dockerfile.dev Dockerfile  # ⬅️ Elastic Beanstalk requires this
+          zip -r deploy.zip * .[^.]* -x '*.git*'
 
       - name: Deploy to Elastic Beanstalk
         uses: einaregilsson/beanstalk-deploy@v21
